@@ -1,29 +1,7 @@
 package com.xyzcorp;
 
-import java.util.Objects;
-import java.util.Random;
+public interface Die {
+    int getPips();
 
-public class Die {
-
-    public static final int MAX_SIDES = 6;
-    private final int pips;
-    private final Random random;
-
-    public Die(Random random) {
-        this(random, 1);
-    }
-
-    public Die(Random random, int pips) {
-        Objects.requireNonNull(random, "Random is null");
-        this.random = random;
-        this.pips = pips;
-    }
-
-    public int getPips() {
-        return pips;
-    }
-
-    public Die roll() {
-        return new Die(random, random.nextInt(MAX_SIDES) + 1);
-    }
+    Die roll();
 }

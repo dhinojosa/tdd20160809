@@ -19,7 +19,7 @@ public class DieTest {
             }
         };
 
-        Die die = new Die(random); //Subject Under Test
+        Die die = new DieImpl(random); //Subject Under Test
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(4);
     }
@@ -27,7 +27,7 @@ public class DieTest {
 
     @Test
     public void testDieDefaultIs1WithRandom() {
-        Die die = new Die(new Random());  //Subject Under Test
+        Die die = new DieImpl(new Random());  //Subject Under Test
         assertThat(die.getPips()).isEqualTo(1);
     }
 
@@ -41,7 +41,7 @@ public class DieTest {
             }
         };
 
-        Die die = new Die(random); //Subject Under Test
+        Die die = new DieImpl(random); //Subject Under Test
         Die rolledDie = die.roll().roll();
         assertThat(rolledDie.getPips()).isEqualTo(4);
     }
@@ -49,7 +49,7 @@ public class DieTest {
     @Test(expectedExceptions = {NullPointerException.class},
           expectedExceptionsMessageRegExp = "^Random is null$")
     public void testRandomIsNotNull() {
-        new Die(null);
+        new DieImpl(null);
     }
 
     @Test
@@ -62,14 +62,14 @@ public class DieTest {
             }
         };
 
-        Die die = new Die(random); //Subject Under Test
+        Die die = new DieImpl(random); //Subject Under Test
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(6);
     }
 
     @Test
     public void testIntegrationWithRealRandom() {
-        Die die = new Die(new Random()); //Subject Under Test
+        Die die = new DieImpl(new Random()); //Subject Under Test
         for (int i= 0; i < 1000000; i++) {
             assertThat(die.roll().getPips()).isGreaterThan(0).isLessThan(7);
         }
@@ -86,7 +86,7 @@ public class DieTest {
         replay(random);
 
         //Test
-        Die die = new Die(random); //Subject Under Test
+        Die die = new DieImpl(random); //Subject Under Test
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(5);
 
