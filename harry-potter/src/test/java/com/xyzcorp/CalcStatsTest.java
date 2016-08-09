@@ -129,6 +129,37 @@ public class CalcStatsTest {
     public void testNumberOfElementsWithNull() {
     	CalcStats.getNumberOfElements(null);
     }
+
+    @Test
+    public void testAverageWithNoItems() {
+        double result = CalcStats.getAverage(new int[]{});
+        assertEquals(result, 0.0);
+    }
+
+    @Test
+    public void testAverageWithOneItem() {
+        double result = CalcStats.getAverage(new int[]{50});
+        assertEquals(result, 50.0);
+    }
+
+    @Test
+    public void testAverageWithTwoItem() {
+        double result = CalcStats.getAverage(new int[]{100,0});
+        assertEquals(result, 50.0);
+    }
+
+    @Test
+    public void testAverageWithThreeItem() {
+        double result = CalcStats.getAverage(new int[]{100,40,50});
+        assertEquals(result, 63.333, .001);
+    }
+    
+    @Test(expectedExceptions={NullPointerException.class}, 
+    		expectedExceptionsMessageRegExp="^Array is null$")
+    public void testAverageWithNull() {
+    	CalcStats.getAverage(null);
+    }
+
 }
 
 

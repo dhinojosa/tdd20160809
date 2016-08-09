@@ -1,11 +1,13 @@
 package com.xyzcorp;
 
+import java.util.Objects;
 import java.util.function.BiFunction;
 
 public class CalcStats {
 
+    private static String ARRAY_IS_NULL_MSG = "Array is null";
+
     private static void checkItemArray(int[] items) {
-        if (items == null) throw new NullPointerException("Array is null");
         if (items.length == 0)
             throw new IllegalArgumentException("Array length is zero");
     }
@@ -22,18 +24,30 @@ public class CalcStats {
     }
 
     public static int getMinimum(int[] items) {
+        Objects.requireNonNull(items, ARRAY_IS_NULL_MSG);
         checkItemArray(items);
         return findByFunction(items, (result, nextValue) -> nextValue < result);
     }
 
     public static int getMaximum(int[] items) {
+        Objects.requireNonNull(items, ARRAY_IS_NULL_MSG);
         checkItemArray(items);
         return findByFunction(items, (result, nextValue) -> nextValue > result);
     }
 
     public static int getNumberOfElements(int[] items) {
-        if (items == null) throw new NullPointerException("Array is null");
+        Objects.requireNonNull(items, ARRAY_IS_NULL_MSG);
         return items.length;
+    }
+
+    public static double getAverage(int[] items) {
+        Objects.requireNonNull(items, ARRAY_IS_NULL_MSG);
+        if (items.length == 0) return 0;
+        int result = 0;
+        for (int item : items) {
+            result += item;
+        }
+        return result / (items.length * 1.0);
     }
 }
 
