@@ -111,6 +111,24 @@ public class CalcStatsTest {
         int result = CalcStats.getMaximum(new int[]{10,-4,3});
         assertEquals(result, 10);
     }
+    
+    @Test
+    public void testNumberOfElements() {
+    	int result = CalcStats.getNumberOfElements(new int[]{});
+    	assertEquals(result, 0);
+    }
+    
+    @Test
+    public void testNumberOfElementsWithArrayOfOneItem() {
+    	int result = CalcStats.getNumberOfElements(new int[]{4});
+    	assertEquals(result, 1);
+    }
+   
+    @Test(expectedExceptions={NullPointerException.class}, 
+    		expectedExceptionsMessageRegExp="^Array is null$")
+    public void testNumberOfElementsWithNull() {
+    	CalcStats.getNumberOfElements(null);
+    }
 }
 
 

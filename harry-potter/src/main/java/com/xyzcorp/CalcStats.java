@@ -30,6 +30,11 @@ public class CalcStats {
         checkItemArray(items);
         return findByFunction(items, (result, nextValue) -> nextValue > result);
     }
+
+    public static int getNumberOfElements(int[] items) {
+        if (items == null) throw new NullPointerException("Array is null");
+        return items.length;
+    }
 }
 
 
