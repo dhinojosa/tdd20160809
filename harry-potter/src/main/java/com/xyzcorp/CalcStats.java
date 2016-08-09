@@ -28,15 +28,8 @@ public class CalcStats {
 
     public static int getMaximum(int[] items) {
         checkItemArray(items);
-        int result = items[0];
-        for (int i = 1; i < items.length; i++) {
-            int nextValue = items[i];
-            if (nextValue > result) result = nextValue;
-        }
-        return result;
+        return findByFunction(items, (result, nextValue) -> nextValue > result);
     }
-
-
 }
 
 
