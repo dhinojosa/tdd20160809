@@ -14,8 +14,8 @@ public class DieTest {
         //Stub of the Collaborator
         Random random = new Random() {
             @Override
-            public int nextInt() {
-                return 4;
+            public int nextInt(int bound) {
+                return 3;
             }
         };
 
@@ -36,8 +36,8 @@ public class DieTest {
         //Stub of the Collaborator
         Random random = new Random() {
             @Override
-            public int nextInt() {
-                return 4;
+            public int nextInt(int bound) {
+                return 3;
             }
         };
 
@@ -57,8 +57,8 @@ public class DieTest {
         //Stub of the Collaborator
         Random random = new Random() {
             @Override
-            public int nextInt() {
-                return 6;
+            public int nextInt(int bound) {
+                return 5;
             }
         };
 
@@ -80,7 +80,7 @@ public class DieTest {
         Random random = createMock(Random.class);
 
         //Rehearse
-        expect(random.nextInt(6)).andReturn(5);
+        expect(random.nextInt(6)).andReturn(4);
 
         //Replay/Rewind
         replay(random);
@@ -88,7 +88,7 @@ public class DieTest {
         //Test
         Die die = new Die(random); //Subject Under Test
         Die rolledDie = die.roll();
-        assertThat(rolledDie.getPips()).isEqualTo(6);
+        assertThat(rolledDie.getPips()).isEqualTo(5);
 
         //Verify
         verify(random);

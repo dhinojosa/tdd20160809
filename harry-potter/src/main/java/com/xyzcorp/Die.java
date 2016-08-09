@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Die {
 
+    public static final int MAX_SIDES = 6;
     private final int pips;
     private final Random random;
 
@@ -23,6 +24,6 @@ public class Die {
     }
 
     public Die roll() {
-        return new Die(random, random.nextInt());
+        return new Die(random, random.nextInt(MAX_SIDES) + 1);
     }
 }
