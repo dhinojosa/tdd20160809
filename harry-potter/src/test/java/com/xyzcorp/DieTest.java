@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.*;
 
 public class DieTest {
 
@@ -79,8 +79,18 @@ public class DieTest {
     public void testBUG3010() {
         Random random = createMock(Random.class);
 
+        //Rehearse
+        expect(random.nextInt(6)).andReturn(5);
+
+        //Replay/Rewind
+        replay(random);
+
+        //Test
         Die die = new Die(random); //Subject Under Test
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(6);
+
+        //Verify
+        verify(random);
     }
 }
